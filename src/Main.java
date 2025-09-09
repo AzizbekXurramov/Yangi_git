@@ -13,6 +13,11 @@ public class Main {
         }
 
         salom();
+        salom2();
+    }
+
+    private static void salom2() {
+        System.out.println("Yangi branchda");
     }
 
     private static void salom() {
