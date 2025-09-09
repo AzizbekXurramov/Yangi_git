@@ -14,6 +14,11 @@ public class Main {
 
         salom();
         salom2();
+        qushish(2,3);
+    }
+
+    private static void qushish(int a, int b) {
+        System.out.println("a+b="+(a+b));
     }
 
     private static void salom2() {
