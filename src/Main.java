@@ -15,8 +15,15 @@ public class Main {
         salom();
         salom2();
         qushish(2,3);
+        bir();
     }
 
+    private static void bir() {
+        System.out.println("birinchi");
+    }
+
+
+    
     private static void qushish(int a, int b) {
         System.out.println("a+b="+(a+b));
     }
