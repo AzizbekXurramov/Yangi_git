@@ -7,6 +7,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        /**Hammaga salom bu 4 ta so'rov Iqtisodiyot universiteti 4-kurs ATT-61/22 va ATT-62/22
+        guruhlar uchun MockApi server yaratib shu 4 ta so'rovni ishlatib ko'rish uchun yozildi.
+        Agar kimdir sinab kurmoqchi bulsa Api ni urniga uzi Api yaratib ishlatib kursa buladi.
+        koddagi kamchilik sifatli kod emas 4 ta so'rovni ishlatgandan keyin kodlarni
+        sifatli va soddalashtirish talabalarga vazifa bo'ladi!!!**/
         postSorov();
         getsurovi();
         putSorovi();
