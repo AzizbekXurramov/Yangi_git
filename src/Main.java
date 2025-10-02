@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -6,12 +7,61 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //teskarisni_top();
+        postSorov();
+        getsurovi();
+        putSorovi();
+        deletSorov();
+
+
+    }
+
+    private static void deletSorov() {
         Scanner scanner = new Scanner(System.in);
-         String url = "https://61a076a2a6470200176133a3.mockapi.io/api/data/users";
+        System.out.print("Qaysi id ni o'chirmoqchisiz?: ");
+        String id = scanner.nextLine();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://61a076a2a6470200176133a3.mockapi.io/api/data/users/"+id))
+                .header("Content-Type","application/json")//shart ham emas uzi
+                .DELETE()
+                .build();
+        //so'rovni junatish
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Server javobi: "+response.body());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void putSorovi() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Qaysi id ni yangilamoqchisiz?: ");
+        String id = scanner.nextLine();
+        System.out.print("Yangi nomni kiring: ");
+        String newName = scanner.nextLine();
+        String putjson = "{\"name\":\""+newName+"\"}";
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://61a076a2a6470200176133a3.mockapi.io/api/data/users/"+id))
+                .header("Content-Type","application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(putjson))
+                .build();
+        //so'rovni junatish
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Server javobi: "+response.body());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void postSorov() {
+        Scanner scanner = new Scanner(System.in);
+        String url = "https://61a076a2a6470200176133a3.mockapi.io/api/data/users";
         System.out.print("Isminggizni kiriting: ");
         String name = scanner.nextLine();
-         String requestBody = "{\"name\":\""+name+"\"}";
+        String requestBody = "{\"name\":\""+name+"\"}";
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
@@ -26,10 +76,6 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        //getsurovi();
-
-
     }
 
     private static void getsurovi() {
